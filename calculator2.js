@@ -15,43 +15,25 @@ function operate(operator,firstNumber,secondNumber) {
 // declare a variable for the div where the numbers go
 const calcScreen = document.querySelector(".calcScreen")
 
-// possible states when clicking a number button
+// make a node list const
+const numberButtons = document.querySelectorAll(".numberButton")
 
-// the calculator is clear
-    // display it
-    // assign activeNumber
-const seven = document.querySelector(".seven")
-seven.addEventListener("click", () => {
-    if (activeNumber === undefined) {
-        // assign firstNumber
-        firstNumber = activeNumber = Number(seven.textContent)
-        // display it
-        calcScreen.textContent = firstNumber
-    } else { // if activeNumber is not undefined then we must be in the second stage
-        // assign secondNumber
-        secondNumber = Number(seven.textContent)
-        // display it
-        calcScreen.textContent = secondNumber
-    }
-    console.log(firstNumber,secondNumber,activeNumber)
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (activeNumber === undefined) {
+            // assign firstNumber
+            firstNumber = activeNumber = Number(button.textContent)
+            // display it
+            calcScreen.textContent = firstNumber
+        } else { // if activeNumber is not undefined then we must be in the second stage
+            // assign secondNumber
+            secondNumber = Number(button.textContent)
+            // display it
+            calcScreen.textContent = secondNumber
+        }
+        console.log(firstNumber,secondNumber,activeNumber)
+    })
 })
-
-const eight = document.querySelector(".eight")
-eight.addEventListener("click", () => {
-    if (activeNumber === undefined) {
-        // assign firstNumber
-        firstNumber = activeNumber = Number(eight.textContent)
-        // display it
-        calcScreen.textContent = firstNumber
-    } else { // if activeNumber is not undefined then we must be in the second stage
-        // assign secondNumber
-        secondNumber = Number(eight.textContent)
-        // display it
-        calcScreen.textContent = secondNumber
-    }
-    console.log(firstNumber,secondNumber,activeNumber)
-})
-
 
 // add button
 const addBtn = document.querySelector(".addBtn")
