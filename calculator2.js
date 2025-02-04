@@ -1,6 +1,6 @@
 // we need to keep track of the number we are calculating
 // let's not definte it yet
-let activeNumber;
+let activeNumber = 0;
 let firstNumber;
 let secondNumber;
 let operator;
@@ -17,11 +17,14 @@ const numberButtons = document.querySelectorAll(".numberButton")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if (activeNumber === undefined) {
-            // assign firstNumber
-            firstNumber = activeNumber = Number(button.textContent)
+        if (activeNumber === 0) {
+            // if active number is zero then we are in the inital state
+            // and we should set it to content of the button that is clicked
+            // and we should keep it as a string
+            // until we are ready to assign it as first number
+            activeNumber = button.textContent
             // display it
-            calcScreen.textContent = firstNumber
+            calcScreen.textContent = activeNumber
         } else { // if activeNumber is not undefined then we must be in the second stage
             // assign secondNumber
             secondNumber = Number(button.textContent)
@@ -38,7 +41,10 @@ const operationButtons = document.querySelectorAll(".operationButton")
 // add event listener to each
 operationButtons.forEach((button) => {
     button.addEventListener("click", () => {
+        // assign the operation
         operator = operations[button.id]
+        // assign the first number to active number
+        firstNumber = activeNumber
         console.log(operator)
      })
 })
@@ -60,7 +66,7 @@ equalsBtn.addEventListener("click", () => {
 const clear = document.querySelector(".clear")
 clear.addEventListener("click", () => {
     calcScreen.textContent = ""
-    activeNumber = firstNumber = secondNumber = undefined
+    activeNumber = firstNumber = secondNumber = operator = undefined
     console.log(firstNumber,secondNumber,activeNumber)
 })
 
