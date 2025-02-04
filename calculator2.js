@@ -1,16 +1,13 @@
 // we need to keep track of the number we are calculating
 // let's not definte it yet
 let activeNumber;
-
 let firstNumber;
 let secondNumber;
-
 let operator;
 
 function operate(operator,firstNumber,secondNumber) {
     return operator(firstNumber,secondNumber);
 }
-
 
 // declare a variable for the div where the numbers go
 const calcScreen = document.querySelector(".calcScreen")
@@ -35,24 +32,16 @@ numberButtons.forEach((button) => {
     })
 })
 
-// add button
-const addBtn = document.querySelector(".addBtn")
-addBtn.addEventListener("click", () => {
-    operator = add
-    console.log("the operation is " + operator)
- })
- // subtract button
-const subtractBtn = document.querySelector(".subtractBtn")
-subtractBtn.addEventListener("click", () => {
-    operator = subtract
-    console.log("the operation is " + operator)
- })
-  // multiply button
-const multiplyBtn = document.querySelector(".multiplyBtn")
-multiplyBtn.addEventListener("click", () => {
-    operator = multiply
-    console.log("the operation is " + operator)
- })
+// declare const to equal node list of operation buttons
+const operationButtons = document.querySelectorAll(".operationButton")
+
+// add event listener to each
+operationButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        operator = operations[button.id]
+        console.log(operator)
+     })
+})
     
 // equals button
 const equalsBtn = document.querySelector(".equalsBtn")
@@ -75,14 +64,16 @@ clear.addEventListener("click", () => {
     console.log(firstNumber,secondNumber,activeNumber)
 })
 
+// Declare functions
+const add = (x, y) => x + y;
+const subtract = (x, y) => x - y;
+const multiply = (x, y) => x * y;
+const divide = (x, y) => x / y;
 
-
-const add = function(x,y) {
-	return x + y;
-};
-const subtract = function(x,y) {
-	return x - y;
-};
-const multiply = function(x,y) {
-	return x * y;
+// Map button IDs to corresponding functions
+const operations = {
+    add,
+    subtract,
+    multiply,
+    divide
 };
