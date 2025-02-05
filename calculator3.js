@@ -40,12 +40,11 @@ const operationButtons = document.querySelectorAll(".operationButton")
 // add event listener to each
 operationButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        
         // assign the operation
         operator = operations[button.id]
         // assign the first number to active number
         firstNumber = Number(numberOnScreen)
-        console.log(typeof firstNumber, firstNumber)
+        console.log('the first number is '+firstNumber,'it is type '+typeof firstNumber)
         numberOnScreen = undefined
      })
 })
@@ -53,12 +52,18 @@ operationButtons.forEach((button) => {
 // equals button
 const equalsBtn = document.querySelector(".equalsBtn")
 equalsBtn.addEventListener("click", () => {
+    console.log(operator)
     // assign second number
     secondNumber = Number(numberOnScreen)
+    console.log('the second number is '+secondNumber,'it is type '+typeof secondNumber)
     // call the operate function to calculate the answer
     answer = operate(operator,firstNumber,secondNumber)
+    console.log('the answer is '+answer)
     // display the answer
     calcScreen.textContent = answer
+    // set the first number to be the answer
+    firstNumber = answer
+    console.log('the first number is '+firstNumber)
 })
 
 // clear
