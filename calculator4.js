@@ -2,6 +2,9 @@ let number;
 let firstNumber;
 let secondNumber;
 
+// declare a variable for the div where the numbers go
+const calcScreen = document.querySelector(".calcScreen")
+
 function operate(operator,firstNumber,secondNumber) {
     return operator(firstNumber,secondNumber);
 }
@@ -17,9 +20,10 @@ numberButtons.forEach((button) => {
         }
         // if in state 2
         else {
-            // concatenate
+            // add the selected number to the number
             number += button.textContent
         }
+        calcScreen.textContent = number
         console.log(number)
     })
 })
@@ -44,7 +48,15 @@ equalsBtn.addEventListener("click", () => {
     secondNumber = Number(number)
     // call the operate function to calculate the answer
     number = operate(operator,firstNumber,secondNumber)
+    calcScreen.textContent = number
     console.log('the first number is '+firstNumber,'the second number is '+secondNumber,'number is ' + number)
+})
+
+// clear
+const clear = document.querySelector(".clear")
+clear.addEventListener("click", () => {
+    calcScreen.textContent = '0'
+    number = firstNumber = secondNumber = operator = undefined
 })
 
 // Declare functions
